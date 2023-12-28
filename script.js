@@ -12,7 +12,8 @@ const listBingos = [
 ];
 
 let audioBingo = new Audio("sons/bingo.mp3");
-let audioEtoile = new Audio("sons/etoile.mp3")
+let audioEtoile = new Audio("sons/etoile.mp3");
+//let audioBingoTotal = new Audio("sons/");
 
 var numberBingos = 0;
 
@@ -96,6 +97,10 @@ function compteurBingos(){
             }
         }
         compteur2 = 0;
+    }
+
+    if(numberBingos == 10){
+       // .play();
     }
 
     nbrBingos.innerHTML = 'Bingos -> ' + numberBingos;
