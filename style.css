@@ -1,0 +1,150 @@
+body{
+    background-image: linear-gradient(to right , #c33ec3 0%, #4987e9 100%);
+}
+
+#top{
+    text-align: center;
+}
+
+#top h1{
+    font-family: 'Fipps', sans-serif;
+    font-size: 30px;
+    margin-top: -10px;
+    text-align: center;
+}
+
+#top p{
+    font-size: 18px;
+    font-family: 'Consolas', sans-serif;
+    margin-bottom: -15px;
+    margin-top: -10px;
+}
+
+#top h3{
+    font-size: 20px;
+    font-family: 'Consolas', sans-serif;
+}
+
+#bottom{
+    font-size: 30px;
+    font-family: 'Consolas', sans-serif;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: -10px;
+}
+
+#bottom div{
+    align-self: center;
+}
+
+#star{
+    background-image: url(images/star.png);
+}
+
+#cases div{
+    background-color: white;
+    border: solid black 4px;
+    margin: -2px;
+    height: 170px;
+    width: 170px;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    transition-duration: 0.5s;
+}
+
+#cases div:hover{
+    transform: scale(1.1);
+    transition-duration: 1s;
+}
+
+#cases{
+    width: 680px;
+    text-align: center;
+    margin: auto;
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 0px;
+    justify-items: stretch;
+    font-size: 25px;
+    font-family: 'Consolas', sans-serif;
+}
+
+.lesCases{
+    cursor: pointer;
+}
+
+button {
+    display: inline-block;
+    padding: 15px 25px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #373737;
+    background-color: rgb(255, 198, 91);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    align-self: center;
+}
+
+button:hover {background-color: orange}
+
+button:active {
+    background-color: orange;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+#BINGO{
+    display: none;
+    position: fixed;
+    background-color: rgba(255, 0, 0, 0.404);
+    text-align: center;
+    font-size: 200px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: fade 2s linear;
+    font-family: 'Fipps', sans-serif;
+}
+
+#BINGO div{
+    text-align: center;
+    width: 100%;
+    align-self: center;
+}
+
+@keyframes fade {
+  0%,100% { opacity: 0 }
+  20%,80% { opacity: 1 }
+}
+
+#Etoile{
+    display: none;
+    position: fixed;
+    text-align: center;
+    color: yellow;
+    -webkit-text-stroke: 5px rgb(94, 94, 255);
+    font-size: 70px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: fade 2s linear;
+    font-family: 'Rubik Bubbles', sans-serif;
+}
+
+#Etoile div{
+    text-align: center;
+    width: 100%;
+    margin-top: 100px;
+}
