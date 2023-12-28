@@ -11,6 +11,9 @@ const listBingos = [
     [3,6,9,12]
 ];
 
+let audioBingo = new Audio("sons/bingo.mp3");
+let audioEtoile = new Audio("sons/etoile.mp3")
+
 var numberBingos = 0;
 
 const Cases = document.getElementsByClassName("lesCases");
@@ -33,6 +36,7 @@ setTimeout(() => {
                 laCase.style.backgroundColor = 'rgb(255, 21, 21)';
                 if (laCase.id == "star") {
                     ETOILE.style.display = 'flex';
+                    audioEtoile.play();
                     setTimeout(() => {
                         ETOILE.style.display = 'none';
                     }, "2000");
@@ -67,6 +71,7 @@ function verifBingos(numéro){
             }
             if (compteur == 4) {
                 BINGO.style.display = 'flex';
+                audioBingo.play();
                 setTimeout(() => {
                     BINGO.style.display = 'none';
                 }, "2000");
