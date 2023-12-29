@@ -20,13 +20,43 @@ var numberBingos = 0;
 const Cases = document.getElementsByClassName("lesCases");
 
 setTimeout(() => {
+    const saveInfos = document.querySelector('#saveInfos');
+    const lesChamps = document.querySelectorAll('.champsTexte');
+    const lesRadios = document.querySelectorAll('.radioButton');
+
+    saveInfos.addEventListener("click", (e) =>{
+        for (var index=0;index < lesChamps.length;index++){
+            const laCase = Cases[index];
+            if (laCase.id == 'star') {
+                console.log('oui');
+                laCase.removeAttribute('id');
+            }
+            else if (lesRadios[index].checked == true) {
+                laCase.setAttribute("id", "star");
+            }
+
+            laCase.innerHTML = lesChamps[index].value;
+        }
+    })
+}, 1);
+
+setTimeout(() => {
     const nbrBingos = document.querySelector('#nbrBingos');
     nbrBingos.innerHTML = 'Bingos -> ' + numberBingos;
     const ETOILE = document.querySelector('#Etoile');
+    const lesChamps = document.querySelectorAll('.champsTexte');
+    const lesRadios = document.querySelectorAll('.radioButton');
 
     for (var index=0;index < Cases.length;index++){
         const laCase = Cases[index];
         const numéro = index;
+
+        lesChamps[index].value = laCase.innerHTML;
+
+        if (laCase.id == "star") {
+            lesRadios[index].checked = true;
+        }
+
         laCase.addEventListener("click", (e) =>{
             if (laCase.classList.contains('active')) {
                 laCase.classList.remove('active');
@@ -36,6 +66,7 @@ setTimeout(() => {
                 verifBingos(numéro);
                 laCase.style.backgroundColor = 'rgb(255, 21, 21)';
                 if (laCase.id == "star") {
+
                     ETOILE.style.display = 'flex';
                     audioEtoile.play();
                     setTimeout(() => {
@@ -46,6 +77,29 @@ setTimeout(() => {
             compteurBingos();
         })
     }
+
+
+    const buttonAdmin = document.querySelector("#buttonAdmin");
+    const buttonAcceuil = document.querySelector("#buttonAcceuil");
+
+    const bingoPage = document.querySelector("#bingoPage");
+    const adminPage = document.querySelector("#adminPage");
+
+    const body = document.querySelector('body');
+
+    buttonAdmin.addEventListener("click", (e) =>{
+        bingoPage.style.display = 'none';
+        adminPage.style.display = 'block';
+        body.style.backgroundImage = 'none';
+        body.style.backgroundColor = '#080710';
+    })
+
+    buttonAcceuil.addEventListener("click", (e) =>{
+        adminPage.style.display = 'none';
+        bingoPage.style.display = 'block';
+        body.style.backgroundImage = 'linear-gradient(to right , #c33ec3 0%, #4987e9 100%)';
+        body.style.backgroundColor = 'none';
+    })
 
 }, "1");
 
