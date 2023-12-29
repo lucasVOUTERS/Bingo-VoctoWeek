@@ -37,6 +37,12 @@ setTimeout(() => {
 
             laCase.innerHTML = lesChamps[index].value;
         }
+
+        const nameTheme = document.querySelector('#nameTheme');
+
+        nameTheme.innerHTML = document.querySelector('#themeText').value;
+
+        alert('Enregistrement effectué!');
     })
 }, 1);
 
@@ -46,6 +52,10 @@ setTimeout(() => {
     const ETOILE = document.querySelector('#Etoile');
     const lesChamps = document.querySelectorAll('.champsTexte');
     const lesRadios = document.querySelectorAll('.radioButton');
+
+    const nameTheme = document.querySelector('#nameTheme');
+
+    document.querySelector('#themeText').value = nameTheme.innerHTML;
 
     for (var index=0;index < Cases.length;index++){
         const laCase = Cases[index];
