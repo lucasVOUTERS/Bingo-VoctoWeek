@@ -23,25 +23,25 @@
             <button id="buttonAdmin" type="button">Admin</button>
         </div>
         <div id="cases">
-            <div class="lesCases">Mention de la magie de Noël</div>
-            <div class="lesCases">Histoire de Noël Badass / Epique / Légendaire</div>
-            <div class="lesCases">"HO HO HO !"</div>
-            <div class="lesCases">Il y a des lutins</div>
-            <div class="lesCases">Présence d'un Narrateur</div>
-            <div class="lesCases">Krampus, Hans ou Fouettard</div>
-            <div class="lesCases">Une musique chantée par les acteurs</div>
-            <div class="lesCases">Bruit de clochettes / carillons</div>
-            <div class="lesCases">Scene à côté d'une cheminée</div>
-            <div class="lesCases">Musique de Noël</div>
-            <div class="lesCases">Présence de biscuit / gâteaux</div>
-            <div class="lesCases">Univers FICTIF</div>
-            <div class="lesCases" id="star">L'histoire se termine bien</div>
-            <div class="lesCases">Quelqu'un Offre / Reçoit un cadeau</div>
-            <div class="lesCases">Mention ou présence du Pôle Nord</div>
-            <div class="lesCases">Mention ou présence de(s) renne(s)</div>
+            <div class="lesCases"></div>
+            <div class="lesCases"></div>
+            <div class="lesCases"></div>
+            <div class="lesCases"></div>
+            <div class="lesCases"></div>
+            <div class="lesCases"></div>
+            <div class="lesCases"></div>
+            <div class="lesCases"></div>
+            <div class="lesCases"></div>
+            <div class="lesCases"></div>
+            <div class="lesCases"></div>
+            <div class="lesCases"></div>
+            <div class="lesCases"></div>
+            <div class="lesCases"></div>
+            <div class="lesCases"></div>
+            <div class="lesCases"></div>
         </div>
         <div id="bottom">
-            <p>THEME : <span id="nameTheme">NOEL</span></p>
+            <p>THEME : <span id="nameTheme"></span></p>
             <div id="nbrBingos"></div>
             <button onclick="resetAll()" type="button">Reset</button>
         </div>
@@ -106,6 +106,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getDatabase, ref, child, get, set, update, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = { 
@@ -121,7 +122,81 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const db = getDatabase();
 
+        const Cases = document.querySelectorAll(".lesCases");
+        const lesChamps = document.getElementsByClassName('champsTexte');
+        const lesRadios = document.querySelectorAll('.radioButton');
+        const nameTheme = document.querySelector('#nameTheme');
+
+        function getCases() {
+            const dbref = ref(db);
+            var cpt = 0;
+
+            get(child(dbref, 'cases')).then((allCases) =>{
+                allCases.forEach(uneCase =>{
+                    Cases[cpt].innerHTML = uneCase.val();
+                    lesChamps[cpt].value = uneCase.val();
+                    cpt++;
+                });
+            })
+        }
+
+        function getStars() {
+            const dbref = ref(db);
+            var cpt = 0;
+
+            get(child(dbref, 'star')).then((allStar) =>{
+                allStar.forEach(uneStar =>{
+                    if (uneStar.val() == true) {
+                        Cases[cpt].setAttribute("id", "star");
+                        lesRadios[cpt].checked = true;
+                    }
+                    cpt++;
+                });
+            })
+        }
+
+        function getTheme() {
+            const dbref = ref(db);
+
+            get(child(dbref, 'theme')).then((Theme) =>{
+                nameTheme.innerHTML = Theme.val();
+                document.querySelector('#themeText').value = Theme.val();
+            })
+        }
+
+        function updateCases() {
+            for (let index = 0; index < lesChamps.length; index++) {
+                
+                update(ref(db, 'cases'), {[index] : lesChamps[index].value});
+
+                if (lesRadios[index].checked == true) {
+                    update(ref(db, 'star'), {[index] : true});
+                } else {
+                    update(ref(db, 'star'), {[index] : false});
+                }
+            }
+
+            update(ref(db, 'theme'), {0 : document.querySelector('#themeText').value});
+
+            updateDatas();
+        }
+
+        function updateDatas() {
+            getCases();
+            getStars();
+            getTheme();    
+        }
+        
+        updateDatas();
+
+        setTimeout(() => {
+            saveInfos.addEventListener("click", (e) =>{
+                updateCases();
+            })
+        }, 1);
+        
         const userEmail = document.querySelector("#email");
         const userPassword = document.querySelector("#password");
         const authForm = document.querySelector("#authForm");
