@@ -167,5 +167,5 @@ function compteurBingos(){
        // .play();
     }
 
-    nbrBingos.innerHTML = 'Bingos -> ' + numberBingos;
+    //nbrBingos.innerHTML = 'Bingos -> ' + numberBingos;
 }
