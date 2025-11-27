@@ -70,7 +70,7 @@ body{
     grid-template-columns: repeat(4, 1fr);
     column-gap: 0px;
     justify-items: stretch;
-    font-size: 25px;
+    font-size: 20px;
     font-family: 'Consolas', sans-serif;
     margin-top: 3vh;
 }
