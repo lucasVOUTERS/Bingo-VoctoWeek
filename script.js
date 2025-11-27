@@ -48,7 +48,7 @@ setTimeout(() => {
 
 setTimeout(() => {
     const nbrBingos = document.querySelector('#nbrBingos');
-    nbrBingos.innerHTML = 'Bingos -> ' + numberBingos;
+    //nbrBingos.innerHTML = 'Bingos -> ' + numberBingos;
     const ETOILE = document.querySelector('#Etoile');
     const lesChamps = document.querySelectorAll('.champsTexte');
     const lesRadios = document.querySelectorAll('.radioButton');
