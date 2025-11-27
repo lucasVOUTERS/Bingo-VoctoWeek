@@ -78,7 +78,7 @@ setTimeout(() => {
                 if (laCase.id == "star") {
 
                     ETOILE.style.display = 'flex';
-                    audioEtoile.play();
+                    //audioEtoile.play();
                     setTimeout(() => {
                         ETOILE.style.display = 'none';
                     }, "2000");
@@ -136,7 +136,7 @@ function verifBingos(numéro){
             }
             if (compteur == 4) {
                 BINGO.style.display = 'flex';
-                audioBingo.play();
+                //audioBingo.play();
                 setTimeout(() => {
                     BINGO.style.display = 'none';
                 }, "2000");
